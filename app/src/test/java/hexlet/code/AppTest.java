@@ -5,13 +5,16 @@ import io.javalin.testtools.JavalinTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AppTest {
     private static Javalin app;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws SQLException, IOException {
         app = App.getApp();
     }
 
