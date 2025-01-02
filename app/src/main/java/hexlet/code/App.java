@@ -47,7 +47,7 @@ public final class App {
     }
 
     private static String getDatabaseUrl() {
-        return System.getenv().getOrDefault("JDBC_DATABASE_URL","jdbc:h2:mem:project");
+        return System.getenv().getOrDefault("JDBC_DATABASE_URL", "jdbc:h2:mem:project");
     }
 
     private static String readResourceFile(String fileName) throws IOException {
