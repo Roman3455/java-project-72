@@ -4,19 +4,18 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 @Getter
 @Setter
 @ToString
 public class Url {
-    private int id;
-
-    @ToString.Include
-    private String name;
-    private LocalDateTime createdAt;
+    private long id;
+    private final String name;
+    private Timestamp createdAt;
 
     public Url(String name) {
         this.name = name;
+        this.createdAt = new Timestamp(System.currentTimeMillis());
     }
 }

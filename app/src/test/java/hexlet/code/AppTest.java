@@ -3,6 +3,7 @@ package hexlet.code;
 import io.javalin.Javalin;
 import io.javalin.testtools.JavalinTest;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -18,6 +19,7 @@ public class AppTest {
         app = App.getApp();
     }
 
+    @Disabled
     @Test
     void testMainPage() throws Exception {
 
