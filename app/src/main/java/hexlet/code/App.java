@@ -10,7 +10,7 @@ import io.javalin.rendering.template.JavalinJte;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public final class App {
+public class App {
 
     public static void main(String[] args) throws IOException, SQLException {
         Javalin app = getApp();
