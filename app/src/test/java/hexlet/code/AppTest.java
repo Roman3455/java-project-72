@@ -18,7 +18,7 @@ import java.sql.SQLException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class AppTest {
+public final class AppTest {
     Javalin app;
     static MockWebServer mockWebServer;
 
