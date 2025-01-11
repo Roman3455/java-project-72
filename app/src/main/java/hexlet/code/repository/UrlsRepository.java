@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-public class UrlRepository extends BaseRepository {
+public class UrlsRepository extends BaseRepository {
 
     public static void save(Url url) throws SQLException {
         var sql = "INSERT INTO urls (name, created_at) VALUES (?, ?)";
@@ -18,7 +18,7 @@ public class UrlRepository extends BaseRepository {
             stmt.setString(1, url.getName());
             stmt.setTimestamp(2, url.getCreatedAt());
             stmt.executeUpdate();
-            var  generatedKeys = stmt.getGeneratedKeys();
+            var generatedKeys = stmt.getGeneratedKeys();
             if (generatedKeys.next()) {
                 url.setId(generatedKeys.getLong(1));
             } else {
@@ -32,7 +32,6 @@ public class UrlRepository extends BaseRepository {
         try (var conn = dataSource.getConnection();
              var stmt = conn.prepareStatement(sql)) {
             stmt.setLong(1, id);
-
             var resultSet = stmt.executeQuery();
             if (resultSet.next()) {
                 return Optional.of(UrlUtil.getUrlFormDB(resultSet));
@@ -46,8 +45,7 @@ public class UrlRepository extends BaseRepository {
         try (var conn = dataSource.getConnection();
              var stmt = conn.prepareStatement(sql)) {
             var resultSet = stmt.executeQuery();
-
-            List<Url> result = new LinkedList<>();
+            var result = new LinkedList<Url>();
             while (resultSet.next()) {
                 result.add(UrlUtil.getUrlFormDB(resultSet));
             }

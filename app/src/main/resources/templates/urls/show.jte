@@ -1,4 +1,5 @@
 @import hexlet.code.dto.urls.UrlPage
+@import java.time.format.DateTimeFormatter
 @param UrlPage page
 
 @template.layout.page(
@@ -24,29 +25,52 @@ content = @`
                 </tr>
                 <tr>
                     <td>Дата создания</td>
-                    <td>Здесь будет дата создания</td>
+                    <td>${page.getUrl().getCreatedAt().toLocalDateTime().format(DateTimeFormatter.ofPattern("dd/MM/yyyy kk:mm"))}</td>
                 </tr>
                 </tbody>
             </table>
 
             <h2 class="mt-5">Проверки</h2>
-<%--            <form method="post" action="/urls/1/checks">--%>
-<%--                <button type="submit" class="btn btn-primary">Запустить проверку</button>--%>
-<%--            </form>--%>
+            <form method="post" action="/urls/${page.getUrl().getId()}/checks">
+                <button type="submit" class="btn btn-primary">Запустить проверку</button>
+            </form>
 
-<%--            <table class="table table-bordered table-hover mt-3">--%>
-<%--                <thead>--%>
-<%--                <tr><th class="col-1">ID</th>--%>
-<%--                    <th class="col-1">Код ответа</th>--%>
-<%--                    <th>title</th>--%>
-<%--                    <th>h1</th>--%>
-<%--                    <th>description</th>--%>
-<%--                    <th class="col-2">Дата проверки</th>--%>
-<%--                </tr></thead>--%>
-<%--                <tbody>--%>
-
-<%--                </tbody>--%>
-<%--            </table>--%>
+            <table class="table table-bordered table-hover mt-3">
+                <thead>
+                <tr><th class="col-1">ID</th>
+                    <th class="col-1">Код ответа</th>
+                    <th>title</th>
+                    <th>h1</th>
+                    <th>description</th>
+                    <th class="col-2">Дата проверки</th>
+                </tr></thead>
+                <tbody>
+                    @if(!page.getUrlChecks().isEmpty())
+                        @for(var urlCheck : page.getUrlChecks())
+                            <tr>
+                                <td>
+                                    ${urlCheck.getId()}
+                                </td>
+                                <td>
+                                    ${urlCheck.getStatusCode()}
+                                </td>
+                                <td>
+                                    ${urlCheck.getTitle()}
+                                </td>
+                                <td>
+                                    ${urlCheck.getH1()}
+                                </td>
+                                <td>
+                                    ${urlCheck.getDescription()}
+                                </td>
+                                <td>
+                                    ${urlCheck.getCreatedAt().toLocalDateTime().format(DateTimeFormatter.ofPattern("dd/MM/yyyy kk:mm"))}
+                                </td>
+                            </tr>
+                        @endfor
+                    @endif
+                </tbody>
+            </table>
         </div>
 
     </section>

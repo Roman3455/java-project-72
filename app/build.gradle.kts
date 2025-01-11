@@ -33,9 +33,17 @@ dependencies {
     implementation("com.zaxxer:HikariCP:6.2.1")
     implementation("org.postgresql:postgresql:42.7.4")
 
+    implementation(platform("com.konghq:unirest-java-bom:4.4.5"))
+    implementation("com.konghq:unirest-java-core")
+    implementation("com.konghq:unirest-modules-gson")
+
     testImplementation(platform("org.junit:junit-bom:5.11.4"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation("org.assertj:assertj-core:3.27.2")
+
+    implementation("org.jsoup:jsoup:1.18.3")
+
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
 }
 
 tasks.test {

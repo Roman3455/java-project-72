@@ -1,5 +1,6 @@
 @import hexlet.code.dto.urls.UrlsPage
 @import hexlet.code.util.NamedRoutes
+@import java.time.format.DateTimeFormatter
 @param UrlsPage page
 
 @template.layout.page(
@@ -33,10 +34,14 @@ content = @`
                                 <a href="${NamedRoutes.urlPath(url.getId())}">${url.getName()}</a>
                             </td>
                             <td>
-                                <a href="#">здесь будет проверка</a>
+                                @if(page.getLastChecks().containsKey(url.getId()))
+                                    ${page.getLastChecks().get(url.getId()).getCreatedAt().toLocalDateTime().format(DateTimeFormatter.ofPattern("dd/MM/yyyy kk:mm"))}
+                                @endif
                             </td>
                             <td>
-                                <a href="#">здесь будет код ответа</a>
+                                @if(page.getLastChecks().containsKey(url.getId()))
+                                    ${page.getLastChecks().get(url.getId()).getStatusCode()}
+                                @endif
                             </td>
                         </tr>
                     @endfor
